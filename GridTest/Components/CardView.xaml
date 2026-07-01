@@ -18,23 +18,27 @@
         </Border.Shadow>
         
         <Grid RowDefinitions="Auto,Auto,*">
-            <!-- Title (left) + Picker (right, only for spline) -->
+            <!-- Title (left) + SubText/Picker (right) -->
             <Grid ColumnDefinitions="*,Auto">
                 <Label Text="{Binding Title}"
                        Style="{StaticResource CardTitleStyle}"
                        FontSize="12"
                        VerticalOptions="Center" />
-                <Picker x:Name="SplinePicker" Grid.Column="1"
-                        ItemsSource="{Binding PickerOptions}"
-                        SelectedIndex="{Binding SelectedOptionIndex}"
-                        FontSize="9"
-                        TextColor="{Binding AccentColor}"
-                        BackgroundColor="Transparent"
-                        HorizontalOptions="End"
-                        VerticalOptions="Center"
-                        HeightRequest="20"
-                        WidthRequest="65"
-                        IsVisible="False" />
+                <HorizontalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                    <Label x:Name="SubTextLabel" Text="{Binding SubText}" FontSize="10" TextColor="{Binding AccentColor}"
+                           VerticalOptions="Center" />
+                    <Picker x:Name="SplinePicker"
+                            ItemsSource="{Binding PickerOptions}"
+                            SelectedIndex="{Binding SelectedOptionIndex}"
+                            FontSize="9"
+                            TextColor="{Binding AccentColor}"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            HeightRequest="20"
+                            WidthRequest="65"
+                            IsVisible="False" />
+                </HorizontalStackLayout>
             </Grid>
             
             <!-- Trend value (below title) -->
@@ -45,93 +49,31 @@
                    TextColor="{Binding AccentColor}"
                    Margin="0,6,0,0" />
             
-            <!-- ===== CHART AREA (Row 2) ===== -->
-            
-            <!-- BAR CHART: dynamic bars from BarValues + SubText on right -->
-            <Grid x:Name="BarChartArea" Grid.Row="2" ColumnDefinitions="*,Auto" IsVisible="False" Margin="0,8,0,0">
-                <!-- Dynamic bars from repository -->
-                <HorizontalStackLayout Spacing="4" VerticalOptions="End" HorizontalOptions="Start"
-                                       BindableLayout.ItemsSource="{Binding BarValues}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="sys:Double">
-                            <BoxView WidthRequest="8" HeightRequest="{Binding .}" CornerRadius="2" BackgroundColor="{Binding Source={x:Reference this}, Path=AccentColor}" Opacity="0.7" />
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </HorizontalStackLayout>
-                <!-- SubText on right -->
-                <Label Grid.Column="1" Text="{Binding SubText}" FontSize="10" TextColor="{Binding AccentColor}" VerticalOptions="End" />
+            <!-- ===== DECORATIVE CHART LINES (visual only) ===== -->
+            <Grid Grid.Row="2" Margin="0,8,0,0" x:Name="DecorativeChartArea">
+                <!-- Line 1: main wave -->
+                <Path Data="M 0,28 Q 15,10 30,22 T 60,14 T 90,20 T 120,8"
+                      Stroke="{Binding AccentColor}" StrokeThickness="1.5"
+                      Aspect="Fill" VerticalOptions="Fill" HorizontalOptions="Fill" Opacity="0.5" />
+                <!-- Line 2: secondary wave -->
+                <Path Data="M 0,32 Q 20,18 40,26 T 80,16 T 120,22"
+                      Stroke="{Binding AccentColor}" StrokeThickness="1"
+                      Aspect="Fill" VerticalOptions="Fill" HorizontalOptions="Fill" Opacity="0.3" />
+                <!-- Line 3: subtle background wave -->
+                <Path Data="M 0,24 C 20,8 40,30 60,18 S 100,28 120,12"
+                      Stroke="{Binding AccentColor}" StrokeThickness="0.8"
+                      Aspect="Fill" VerticalOptions="Fill" HorizontalOptions="Fill" Opacity="0.2" />
             </Grid>
-            
-            <!-- LINE CHART: sharp polyline spanning full width -->
-            <Path x:Name="LineChartArea" Grid.Row="2"
-                  Data="{Binding PathData, Source={x:Reference this}}"
-                  Stroke="{Binding AccentColor}"
-                  StrokeThickness="2"
-                  Aspect="Fill"
-                  IsVisible="False"
-                  Margin="0,8,0,0"
-                  VerticalOptions="Fill"
-                  HorizontalOptions="Fill"
-                  Opacity="0.7" />
-            
-            <!-- SPLINE CHART: smooth curve with dots -->
-            <Grid x:Name="SplineChartArea" Grid.Row="2" IsVisible="False" Margin="0,8,0,0">
-                <Path Data="{Binding PathData, Source={x:Reference this}}"
-                      Stroke="{Binding AccentColor}"
-                      StrokeThickness="2"
-                      Aspect="Fill"
-                      VerticalOptions="Fill"
-                      HorizontalOptions="Fill"
-                      Opacity="0.7" />
-                <!-- Circular nodes on spline (dynamic from BarValues) -->
-                <HorizontalStackLayout Spacing="20" VerticalOptions="Center"
-                                       BindableLayout.ItemsSource="{Binding BarValues}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="sys:Double">
-                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{Binding Source={x:Reference this}, Path=AccentColor}" />
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </HorizontalStackLayout>
-            </Grid>
-            
-            <!-- WAVE CHART (default): simple wave line -->
-            <Path x:Name="WaveChartArea" Grid.Row="2"
-                  Data="{Binding PathData, Source={x:Reference this}}"
-                  Stroke="{Binding AccentColor}"
-                  StrokeThickness="2"
-                  Aspect="Fill"
-                  Margin="0,8,0,0"
-                  VerticalOptions="End"
-                  HorizontalOptions="Fill"
-                  Opacity="0.6" />
         </Grid>
         
-        <!-- Triggers to show/hide chart areas based on ChartType -->
+        <!-- Triggers -->
         <Border.Triggers>
-            <DataTrigger TargetType="Border" Binding="{Binding ChartType, Source={x:Reference this}}" Value="bar">
-                <Setter TargetName="BarChartArea" Property="IsVisible" Value="True" />
-                <Setter TargetName="LineChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="SplineChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="WaveChartArea" Property="IsVisible" Value="False" />
-            </DataTrigger>
-            <DataTrigger TargetType="Border" Binding="{Binding ChartType, Source={x:Reference this}}" Value="line">
-                <Setter TargetName="BarChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="LineChartArea" Property="IsVisible" Value="True" />
-                <Setter TargetName="SplineChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="WaveChartArea" Property="IsVisible" Value="False" />
-            </DataTrigger>
             <DataTrigger TargetType="Border" Binding="{Binding ChartType, Source={x:Reference this}}" Value="spline">
-                <Setter TargetName="BarChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="LineChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="SplineChartArea" Property="IsVisible" Value="True" />
-                <Setter TargetName="WaveChartArea" Property="IsVisible" Value="False" />
                 <Setter TargetName="SplinePicker" Property="IsVisible" Value="True" />
+                <Setter TargetName="SubTextLabel" Property="IsVisible" Value="False" />
             </DataTrigger>
-            <DataTrigger TargetType="Border" Binding="{Binding ChartType, Source={x:Reference this}}" Value="wave">
-                <Setter TargetName="BarChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="LineChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="SplineChartArea" Property="IsVisible" Value="False" />
-                <Setter TargetName="WaveChartArea" Property="IsVisible" Value="True" />
+            <DataTrigger TargetType="Border" Binding="{Binding ChartType, Source={x:Reference this}}" Value="none">
+                <Setter TargetName="DecorativeChartArea" Property="IsVisible" Value="False" />
             </DataTrigger>
         </Border.Triggers>
     </Border>
