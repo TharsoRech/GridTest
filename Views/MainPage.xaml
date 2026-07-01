@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:GridTest.Components"
+             x:Class="GridTest.Views.MainPage"
+             BackgroundColor="{StaticResource GeneralBackground}">
+
+    <!-- Main Grid: Sidebar + Content -->
+    <Grid ColumnDefinitions="220,*"
+          ColumnSpacing="0">
+
+        <!-- Column 0: Sidebar -->
+        <components:SidebarView Grid.Column="0" />
+
+        <!-- Column 1: Main Content -->
+        <ScrollView Grid.Column="1"
+                    BackgroundColor="{StaticResource GeneralBackground}">
+            <VerticalStackLayout Padding="24,20"
+                                 Spacing="20">
+
+                <!-- ===== HEADER ===== -->
+                <components:HeaderView />
+
+                <!-- ===== TOP BLOCK: Earnings Chart + Traffic Donut ===== -->
+                <Grid ColumnDefinitions="2*,*"
+                      ColumnSpacing="20"
+                      RowDefinitions="Auto">
+
+                    <!-- Left: Earnings Chart Card -->
+                    <Border Grid.Column="0"
+                            Style="{StaticResource CardFrameStyle}">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <!-- Header Row -->
+                            <Grid Grid.Row="0"
+                                  ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                    <Label Text="Total Earnings"
+                                           FontSize="13"
+                                           TextColor="{StaticResource TextSecondary}" />
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Label Text="$3,468.96"
+                                               FontSize="28"
+                                               FontFamily="OpenSansSemibold"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                        <Label Text="↑ 12.5%"
+                                               FontSize="13"
+                                               FontFamily="OpenSansSemibold"
+                                               TextColor="{StaticResource ChartGreen}"
+                                               VerticalTextAlignment="Center" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <Border Grid.Column="1"
+                                        BackgroundColor="{StaticResource AccentOrange}"
+                                        StrokeShape="RoundRectangle 8"
+                                        StrokeThickness="0"
+                                        Padding="14,8"
+                                        VerticalOptions="Start">
+                                    <Label Text="82 Sales"
+                                           FontSize="13"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="White" />
+                                </Border>
+                            </Grid>
+
+                            <!-- Legend -->
+                            <HorizontalStackLayout Grid.Row="1"
+                                                   Spacing="20"
+                                                   Margin="0,16,0,8">
+                                <HorizontalStackLayout Spacing="6">
+                                    <BoxView WidthRequest="10" HeightRequest="10"
+                                             CornerRadius="5"
+                                             Color="{StaticResource ChartBlue}" />
+                                    <Label Text="Revenue" FontSize="12"
+                                           TextColor="{StaticResource TextSecondary}"
+                                           VerticalTextAlignment="Center" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="6">
+                                    <BoxView WidthRequest="10" HeightRequest="10"
+                                             CornerRadius="5"
+                                             Color="{StaticResource ChartYellow}" />
+                                    <Label Text="Profit" FontSize="12"
+                                           TextColor="{StaticResource TextSecondary}"
+                                           VerticalTextAlignment="Center" />
+                                </HorizontalStackLayout>
+                            </HorizontalStackLayout>
+
+                            <!-- Main Line Chart (Static Path rendering) -->
+                            <Grid Grid.Row="2"
+                                  HeightRequest="200"
+                                  Margin="0,4,0,0">
+                                <!-- Grid Lines -->
+                                <Grid RowDefinitions="*,*,*,*">
+                                    <BoxView Grid.Row="0" HeightRequest="1"
+                                             Color="{StaticResource DividerColor}"
+                                             VerticalOptions="End" />
+                                    <BoxView Grid.Row="1" HeightRequest="1"
+                                             Color="{StaticResource DividerColor}"
+                                             VerticalOptions="End" />
+                                    <BoxView Grid.Row="2" HeightRequest="1"
+                                             Color="{StaticResource DividerColor}"
+                                             VerticalOptions="End" />
+                                    <BoxView Grid.Row="3" HeightRequest="1"
+                                             Color="{StaticResource DividerColor}"
+                                             VerticalOptions="End" />
+                                </Grid>
+
+                                <!-- X-Axis Labels -->
+                                <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
+                                      VerticalOptions="End"
+                                      Margin="0,0,0,0"
+                                      HeightRequest="20">
+                                    <Label Grid.Column="0" Text="Jan" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="1" Text="Feb" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="2" Text="Mar" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="3" Text="Apr" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="4" Text="May" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="5" Text="Jun" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="6" Text="Jul" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="7" Text="Aug" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="8" Text="Sep" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="9" Text="Oct" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="10" Text="Nov" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="11" Text="Dec" FontSize="10"
+                                           TextColor="{StaticResource TextTertiary}"
+                                           HorizontalTextAlignment="Center" />
+                                </Grid>
+
+                                <!-- Blue Series Line (Revenue) -->
+                                <Path Stroke="{StaticResource ChartBlue}"
+                                      StrokeThickness="2.5"
+                                      Aspect="Fill"
+                                      VerticalOptions="Fill"
+                                      HorizontalOptions="Fill"
+                                      Margin="0,0,0,20">
+                                    <Path.Data>
+                                        <PathGeometry Figures="M 0,140 L 30,100 L 60,120 L 90,60 L 120,80 L 150,30 L 180,50 L 210,20 L 240,40 L 270,10 L 300,25 L 330,5" />
+                                    </Path.Data>
+                                </Path>
+
+                                <!-- Blue Series Fill Area -->
+                                <Path Fill="#203B82F6"
+                                      Aspect="Fill"
+                                      VerticalOptions="Fill"
+                                      HorizontalOptions="Fill"
+                                      Margin="0,0,0,20">
+                                    <Path.Data>
+                                        <PathGeometry Figures="M 0,140 L 30,100 L 60,120 L 90,60 L 120,80 L 150,30 L 180,50 L 210,20 L 240,40 L 270,10 L 300,25 L 330,5 L 330,180 L 0,180 Z" />
+                                    </Path.Data>
+                                </Path>
+
+                                <!-- Yellow Series Line (Profit) -->
+                                <Path Stroke="{StaticResource ChartYellow}"
+                                      StrokeThickness="2.5"
+                                      Aspect="Fill"
+                                      VerticalOptions="Fill"
+                                      HorizontalOptions="Fill"
+                                      Margin="0,0,0,20">
+                                    <Path.Data>
+                                        <PathGeometry Figures="M 0,160 L 30,130 L 60,145 L 90,100 L 120,70 L 150,110 L 180,60 L 210,90 L 240,50 L 270,80 L 300,40 L 330,65" />
+                                    </Path.Data>
+                                </Path>
+
+                                <!-- Yellow Series Fill Area -->
+                                <Path Fill="#20FBBF24"
+                                      Aspect="Fill"
+                                      VerticalOptions="Fill"
+                                      HorizontalOptions="Fill"
+                                      Margin="0,0,0,20">
+                                    <Path.Data>
+                                        <PathGeometry Figures="M 0,160 L 30,130 L 60,145 L 90,100 L 120,70 L 150,110 L 180,60 L 210,90 L 240,50 L 270,80 L 300,40 L 330,65 L 330,180 L 0,180 Z" />
+                                    </Path.Data>
+                                </Path>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Right: Traffic Donut Card -->
+                    <Border Grid.Column="1"
+                            Style="{StaticResource CardFrameStyle}">
+                        <Grid RowDefinitions="Auto,*">
+                            <Label Grid.Row="0"
+                                   Text="Traffic"
+                                   FontSize="16"
+                                   FontFamily="OpenSansSemibold"
+                                   TextColor="{StaticResource TextPrimary}" />
+
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Spacing="16"
+                                                 VerticalOptions="Center">
+                                <!-- Donut Chart (Static Arcs) -->
+                                <Grid WidthRequest="160"
+                                      HeightRequest="160"
+                                      HorizontalOptions="Center">
+                                    <!-- Background circle -->
+                                    <Ellipse WidthRequest="160"
+                                             HeightRequest="160"
+                                             Stroke="{StaticResource DividerColor}"
+                                             StrokeThickness="24"
+                                             Fill="Transparent" />
+
+                                    <!-- Segment 1: 34% (Desktop) - Blue -->
+                                    <Path Stroke="{StaticResource ChartBlue}"
+                                          StrokeThickness="24"
+                                          Fill="Transparent"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M 80,8 A 72,72 0 0 1 145.6,120.8" />
+                                        </Path.Data>
+                                    </Path>
+
+                                    <!-- Segment 2: 55% (Mobile) - Orange -->
+                                    <Path Stroke="{StaticResource AccentOrange}"
+                                          StrokeThickness="24"
+                                          Fill="Transparent"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M 145.6,120.8 A 72,72 0 1 1 22.4,108.8" />
+                                        </Path.Data>
+                                    </Path>
+
+                                    <!-- Segment 3: 11% (Tablet) - Purple -->
+                                    <Path Stroke="{StaticResource ChartPurple}"
+                                          StrokeThickness="24"
+                                          Fill="Transparent"
+                                          HorizontalOptions="Center"
+                                          VerticalOptions="Center">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M 22.4,108.8 A 72,72 0 0 1 80,8" />
+                                        </Path.Data>
+                                    </Path>
+
+                                    <!-- Center Label -->
+                                    <VerticalStackLayout VerticalOptions="Center"
+                                                         HorizontalOptions="Center"
+                                                         Spacing="2">
+                                        <Label Text="100%"
+                                               FontSize="20"
+                                               FontFamily="OpenSansSemibold"
+                                               TextColor="{StaticResource TextPrimary}"
+                                               HorizontalTextAlignment="Center" />
+                                        <Label Text="Total"
+                                               FontSize="11"
+                                               TextColor="{StaticResource TextSecondary}"
+                                               HorizontalTextAlignment="Center" />
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!-- Legend -->
+                                <VerticalStackLayout Spacing="8">
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <HorizontalStackLayout Grid.Column="0" Spacing="8">
+                                            <BoxView WidthRequest="10" HeightRequest="10"
+                                                     CornerRadius="5"
+                                                     Color="{StaticResource ChartBlue}" />
+                                            <Label Text="Desktop" FontSize="13"
+                                                   TextColor="{StaticResource TextSecondary}"
+                                                   VerticalTextAlignment="Center" />
+                                        </HorizontalStackLayout>
+                                        <Label Grid.Column="2" Text="34%"
+                                               FontSize="13"
+                                               FontFamily="OpenSansSemibold"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <HorizontalStackLayout Grid.Column="0" Spacing="8">
+                                            <BoxView WidthRequest="10" HeightRequest="10"
+                                                     CornerRadius="5"
+                                                     Color="{StaticResource AccentOrange}" />
+                                            <Label Text="Mobile" FontSize="13"
+                                                   TextColor="{StaticResource TextSecondary}"
+                                                   VerticalTextAlignment="Center" />
+                                        </HorizontalStackLayout>
+                                        <Label Grid.Column="2" Text="55%"
+                                               FontSize="13"
+                                               FontFamily="OpenSansSemibold"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <HorizontalStackLayout Grid.Column="0" Spacing="8">
+                                            <BoxView WidthRequest="10" HeightRequest="10"
+                                                     CornerRadius="5"
+                                                     Color="{StaticResource ChartPurple}" />
+                                            <Label Text="Tablet" FontSize="13"
+                                                   TextColor="{StaticResource TextSecondary}"
+                                                   VerticalTextAlignment="Center" />
+                                        </HorizontalStackLayout>
+                                        <Label Grid.Column="2" Text="11%"
+                                               FontSize="13"
+                                               FontFamily="OpenSansSemibold"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!-- ===== MIDDLE BLOCK: 4 Status Cards ===== -->
+                <Grid ColumnDefinitions="*,*,*,*"
+                      ColumnSpacing="16">
+
+                    <!-- Card 1: Revenue Status (Light Blue) -->
+                    <components:CardView Grid.Column="0"
+                                         Title="Revenue Status"
+                                         Value="$12,480"
+                                         TrendText="↑ 8.2%"
+                                         CardBackgroundColor="{StaticResource LightBlue}"
+                                         AccentColor="{StaticResource ChartBlue}" />
+
+                    <!-- Card 2: Page View (Light Yellow) -->
+                    <components:CardView Grid.Column="1"
+                                         Title="Page View"
+                                         Value="24,580"
+                                         TrendText="↑ 15.3%"
+                                         CardBackgroundColor="{StaticResource LightYellow}"
+                                         AccentColor="{StaticResource ChartYellow}" />
+
+                    <!-- Card 3: Bounce Rate (Light Orange) -->
+                    <components:CardView Grid.Column="2"
+                                         Title="Bounce Rate"
+                                         Value="42.5%"
+                                         TrendText="↓ 3.1%"
+                                         CardBackgroundColor="{StaticResource LightOrange}"
+                                         AccentColor="{StaticResource AccentOrange}" />
+
+                    <!-- Card 4: Revenue Status (Light Purple) -->
+                    <components:CardView Grid.Column="3"
+                                         Title="Sessions"
+                                         Value="18,290"
+                                         TrendText="↑ 11.7%"
+                                         CardBackgroundColor="{StaticResource LightPurple}"
+                                         AccentColor="{StaticResource ChartPurple}" />
+                </Grid>
+
+                <!-- ===== BOTTOM BLOCK: Activities + Orders ===== -->
+                <Grid ColumnDefinitions="*,1.5*"
+                      ColumnSpacing="20">
+
+                    <!-- Left: Recent Activities -->
+                    <Border Style="{StaticResource CardFrameStyle}">
+                        <Grid RowDefinitions="Auto,*">
+                            <Grid Grid.Row="0"
+                                  ColumnDefinitions="*,Auto"
+                                  Margin="0,0,0,12">
+                                <Label Text="Recent Activities"
+                                       FontSize="16"
+                                       FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Grid.Column="1"
+                                       Text="View All"
+                                       FontSize="13"
+                                       TextColor="{StaticResource AccentOrange}"
+                                       FontFamily="OpenSansSemibold" />
+                            </Grid>
+
+                            <CollectionView Grid.Row="1"
+                                            ItemsSource="{Binding RecentActivities}"
+                                            x:Name="ActivitiesCollection">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <components:ListItemView />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Border>
+
+                    <!-- Right: Order Status Table -->
+                    <Border Style="{StaticResource CardFrameStyle}">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <!-- Title -->
+                            <Grid Grid.Row="0"
+                                  ColumnDefinitions="*,Auto"
+                                  Margin="0,0,0,12">
+                                <Label Text="Order Status"
+                                       FontSize="16"
+                                       FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Grid.Column="1"
+                                       Text="View All"
+                                       FontSize="13"
+                                       TextColor="{StaticResource AccentOrange}"
+                                       FontFamily="OpenSansSemibold" />
+                            </Grid>
+
+                            <!-- Table Header -->
+                            <Border Grid.Row="1"
+                                    BackgroundColor="#F8FAFC"
+                                    StrokeShape="RoundRectangle 8"
+                                    StrokeThickness="0"
+                                    Padding="12,10"
+                                    Margin="0,0,0,8">
+                                <Grid ColumnDefinitions="1.2*,1.5*,1*,1*,1.2*">
+                                    <Label Grid.Column="0" Text="INVOICE"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource TextTertiary}" />
+                                    <Label Grid.Column="1" Text="CUSTOMERS"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource TextTertiary}" />
+                                    <Label Grid.Column="2" Text="FROM"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource TextTertiary}" />
+                                    <Label Grid.Column="3" Text="PRICE"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource TextTertiary}" />
+                                    <Label Grid.Column="4" Text="STATUS"
+                                           FontSize="11"
+                                           FontFamily="OpenSansSemibold"
+                                           TextColor="{StaticResource TextTertiary}" />
+                                </Grid>
+                            </Border>
+
+                            <!-- Table Rows -->
+                            <CollectionView Grid.Row="2"
+                                            ItemsSource="{Binding OrderStatusItems}"
+                                            x:Name="OrdersCollection">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BackgroundColor="Transparent"
+                                                StrokeShape="RoundRectangle 0"
+                                                StrokeThickness="0"
+                                                Padding="12,10"
+                                                Margin="0,0,0,4">
+                                            <Grid ColumnDefinitions="1.2*,1.5*,1*,1*,1.2*"
+                                                  ColumnSpacing="4">
+                                                <Label Grid.Column="0"
+                                                       Text="{Binding Invoice}"
+                                                       FontSize="13"
+                                                       FontFamily="OpenSansSemibold"
+                                                       TextColor="{StaticResource TextPrimary}"
+                                                       VerticalTextAlignment="Center" />
+                                                <Label Grid.Column="1"
+                                                       Text="{Binding Customer}"
+                                                       FontSize="13"
+                                                       TextColor="{StaticResource TextSecondary}"
+                                                       VerticalTextAlignment="Center" />
+                                                <Label Grid.Column="2"
+                                                       Text="{Binding From}"
+                                                       FontSize="13"
+                                                       TextColor="{StaticResource TextSecondary}"
+                                                       VerticalTextAlignment="Center" />
+                                                <Label Grid.Column="3"
+                                                       Text="{Binding Price}"
+                                                       FontSize="13"
+                                                       FontFamily="OpenSansSemibold"
+                                                       TextColor="{StaticResource TextPrimary}"
+                                                       VerticalTextAlignment="Center" />
+                                                <!-- Status Badge -->
+                                                <Border Grid.Column="4"
+                                                        BackgroundColor="{Binding StatusColor}"
+                                                        StrokeShape="RoundRectangle 12"
+                                                        StrokeThickness="0"
+                                                        Padding="10,4"
+                                                        HorizontalOptions="Start"
+                                                        VerticalOptions="Center">
+                                                    <Label Text="{Binding Status}"
+                                                           FontSize="11"
+                                                           FontFamily="OpenSansSemibold"
+                                                           TextColor="White"
+                                                           VerticalTextAlignment="Center"
+                                                           HorizontalTextAlignment="Center" />
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- ==================== COLOR PALETTE ==================== -->
+    <!-- Sidebar / Dark Blue -->
+    <Color x:Key="SidebarDarkBlue">#0D1B2A</Color>
+    <Color x:Key="SidebarDarkBlueAlt">#111E35</Color>
+    <Color x:Key="SidebarActiveItem">#FFFFFF</Color>
+    <Color x:Key="SidebarInactiveItem">#7B8FA3</Color>
+
+    <!-- Background -->
+    <Color x:Key="GeneralBackground">#F4F7FC</Color>
+    <Color x:Key="CardBackground">#FFFFFF</Color>
+
+    <!-- Accent -->
+    <Color x:Key="AccentOrange">#FF6B35</Color>
+    <Color x:Key="AccentOrangeAlt">#FF5722</Color>
+
+    <!-- Status Card Pastels -->
+    <Color x:Key="LightBlue">#E3F2FD</Color>
+    <Color x:Key="LightYellow">#FFFDE7</Color>
+    <Color x:Key="LightOrange">#FDF2E9</Color>
+    <Color x:Key="LightPurple">#F3E5F5</Color>
+
+    <!-- Chart Colors -->
+    <Color x:Key="ChartBlue">#3B82F6</Color>
+    <Color x:Key="ChartYellow">#FBBF24</Color>
+    <Color x:Key="ChartPink">#EC4899</Color>
+    <Color x:Key="ChartPurple">#8B5CF6</Color>
+    <Color x:Key="ChartGreen">#10B981</Color>
+
+    <!-- Text Colors -->
+    <Color x:Key="TextPrimary">#1E293B</Color>
+    <Color x:Key="TextSecondary">#64748B</Color>
+    <Color x:Key="TextTertiary">#94A3B8</Color>
+
+    <!-- Status Colors -->
+    <Color x:Key="StatusPending">#F59E0B</Color>
+    <Color x:Key="StatusSuccess">#10B981</Color>
+    <Color x:Key="StatusFailed">#EF4444</Color>
+
+    <!-- Border / Divider -->
+    <Color x:Key="DividerColor">#E2E8F0</Color>
+
+    <!-- ==================== IMPLICIT LABEL STYLE ==================== -->
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <!-- ==================== IMPLICIT BORDER STYLE ==================== -->
+    <Style TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Background" Value="{StaticResource CardBackground}" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="Shadow">
+            <Shadow Brush="#1A000000"
+                    Offset="0,2"
+                    Radius="8"
+                    Opacity="0.15" />
+        </Setter>
+    </Style>
+
+    <!-- ==================== BUTTON STYLES ==================== -->
+    <Style x:Key="AccentButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource AccentOrange}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="Padding" Value="20,10" />
+    </Style>
+
+    <!-- ==================== FRAME / CARD STYLE ==================== -->
+    <Style x:Key="CardFrameStyle" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Background" Value="{StaticResource CardBackground}" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Shadow">
+            <Shadow Brush="#14000000"
+                    Offset="0,2"
+                    Radius="10"
+                    Opacity="0.12" />
+        </Setter>
+    </Style>
+
+    <!-- ==================== SIDEBAR MENU ITEM STYLE ==================== -->
+    <Style x:Key="SidebarMenuItemStyle" TargetType="HorizontalStackLayout">
+        <Setter Property="Spacing" Value="12" />
+        <Setter Property="Padding" Value="16,12" />
+    </Style>
+
+    <Style x:Key="SidebarMenuLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource SidebarInactiveItem}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="SidebarMenuLabelActiveStyle" TargetType="Label"
+           BasedOn="{StaticResource SidebarMenuLabelStyle}">
+        <Setter Property="TextColor" Value="{StaticResource SidebarActiveItem}" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+    </Style>
+
+    <!-- ==================== SECTION TITLE STYLE ==================== -->
+    <Style x:Key="SectionTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <Style x:Key="SectionSubtitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+    </Style>
+
+</ResourceDictionary>

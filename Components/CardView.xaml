@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.CardView"
+             x:Name="this">
+
+    <Border StrokeShape="RoundRectangle 12"
+            StrokeThickness="0"
+            BackgroundColor="{Binding Source={x:Reference this}, Path=CardBackgroundColor}"
+            Padding="16">
+        <Grid RowDefinitions="Auto,Auto,*">
+
+            <!-- Title Row -->
+            <Label Grid.Row="0"
+                   Text="{Binding Source={x:Reference this}, Path=Title}"
+                   FontSize="13"
+                   FontFamily="OpenSansRegular"
+                   TextColor="{StaticResource TextSecondary}" />
+
+            <!-- Value Row -->
+            <HorizontalStackLayout Grid.Row="1"
+                                   Spacing="6"
+                                   Margin="0,8,0,0">
+                <Label Text="{Binding Source={x:Reference this}, Path=Value}"
+                       FontSize="24"
+                       FontFamily="OpenSansSemibold"
+                       TextColor="{StaticResource TextPrimary}"
+                       VerticalTextAlignment="Center" />
+                <Label Text="{Binding Source={x:Reference this}, Path=TrendText}"
+                       FontSize="12"
+                       FontFamily="OpenSansSemibold"
+                       TextColor="{StaticResource ChartGreen}"
+                       VerticalTextAlignment="Center"
+                       Margin="0,4,0,0" />
+            </HorizontalStackLayout>
+
+            <!-- Mini Graph Area (simulated wave) -->
+            <Grid Grid.Row="2"
+                  HeightRequest="40"
+                  Margin="0,8,0,0">
+                <!-- Simulated mini line graph using Path -->
+                <Path x:Name="MiniGraphPath"
+                      Stroke="{Binding Source={x:Reference this}, Path=AccentColor}"
+                      StrokeThickness="2"
+                      Aspect="Fill"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill">
+                    <Path.Data>
+                        <PathGeometry Figures="M 0,30 L 15,20 L 30,25 L 45,10 L 60,18 L 75,5 L 90,12" />
+                    </Path.Data>
+                </Path>
+                <!-- Second decorative line -->
+                <Path Stroke="{Binding Source={x:Reference this}, Path=AccentColor}"
+                      StrokeThickness="1.5"
+                      Opacity="0.3"
+                      Aspect="Fill"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill">
+                    <Path.Data>
+                        <PathGeometry Figures="M 0,35 L 15,28 L 30,32 L 45,22 L 60,26 L 75,18 L 90,24" />
+                    </Path.Data>
+                </Path>
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

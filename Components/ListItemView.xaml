@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.ListItemView">
+
+    <Grid ColumnDefinitions="Auto,*,Auto"
+          RowDefinitions="Auto"
+          Padding="0,10"
+          ColumnSpacing="14">
+
+        <!-- Timeline Circle with Icon -->
+        <Grid Grid.Column="0"
+              WidthRequest="40"
+              HeightRequest="40">
+            <!-- Timeline vertical line -->
+            <BoxView WidthRequest="2"
+                     Color="{StaticResource DividerColor}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Fill" />
+            <!-- Colored circle -->
+            <Border WidthRequest="36"
+                    HeightRequest="36"
+                    StrokeShape="RoundRectangle 18"
+                    StrokeThickness="0"
+                    BackgroundColor="{Binding ColorHex}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Padding="0">
+                <Label Text="{Binding Icon}"
+                       FontSize="14"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <!-- Title and Description -->
+        <VerticalStackLayout Grid.Column="1"
+                             VerticalOptions="Center"
+                             Spacing="3">
+            <Label Text="{Binding Title}"
+                   FontSize="14"
+                   FontFamily="OpenSansSemibold"
+                   TextColor="{StaticResource TextPrimary}" />
+            <Label Text="{Binding Description}"
+                   FontSize="12"
+                   TextColor="{StaticResource TextSecondary}"
+                   LineBreakMode="TailTruncation"
+                   MaxLines="1" />
+        </VerticalStackLayout>
+
+        <!-- Time Ago -->
+        <Label Grid.Column="2"
+               Text="{Binding TimeAgo}"
+               FontSize="12"
+               TextColor="{StaticResource TextTertiary}"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="End" />
+    </Grid>
+</ContentView>
