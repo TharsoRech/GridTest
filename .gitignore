@@ -1,0 +1,84 @@
+## .NET MAUI / .NET Core
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# Rider
+.idea/
+
+# Build results
+[Dd]ebugPublic/
+[Rr]eleases/
+build/
+artifacts/
+
+# NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+*.snupkg
+**/[Pp]rojectAssets.lock.json
+nuget.config
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+*.swp
+*~.nib
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Publish
+**/[Pp]ublish/
+
+# Android
+**/[Aa]ndroid/**/*.apk
+**/[Aa]ndroid/**/*.aab
+**/[Aa]ndroid/**/*.keystore
+**/[Aa]ndroid/**/google-services.json
+
+# iOS / MacCatalyst
+**/*.ipa
+**/*.dSYM.zip
+**/*.dSYM
+
+# Windows
+**/*.msix
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Dotnet tool
+.config/dotnet-tools.json
