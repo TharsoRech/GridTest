@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using GridTest.Infrastructure;
+using GridTest.ViewModels;
 
 namespace GridTest;
 
@@ -14,6 +16,15 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
+
+        // Register all Infrastructure services (repositories, HTTP clients, etc.)
+        builder.Services.AddInfrastructure();
+
+        // Register ViewModels
+        builder.Services.AddTransient<MainPageViewModel>();
+
+        // Register Pages
+        builder.Services.AddTransient<MainPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

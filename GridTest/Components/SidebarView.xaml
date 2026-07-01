@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.SidebarView">
+    
+    <Border BackgroundColor="{StaticResource SidebarDarkBlue}"
+            WidthRequest="240"
+            Padding="0,20,0,0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="0" />
+        </Border.StrokeShape>
+        <Border.StrokeThickness>0</Border.StrokeThickness>
+        
+        <ScrollView>
+            <VerticalStackLayout Spacing="4">
+                <!-- Logo/Header -->
+                <Label Text="GridTest"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextWhite}"
+                       Margin="20,10,0,30" />
+                
+                <!-- Menu Items -->
+                <VerticalStackLayout Spacing="2">
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="📊" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Dashboard" Grid.Column="1" TextColor="{StaticResource TextWhite}" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="🧩" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Widgets" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="🎨" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="UI Elements" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="⚡" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Advanced UI" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="📝" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Form Elements" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="✏️" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Editors" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="📈" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Charts" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="📋" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Tables" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="💬" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Popups" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="🔔" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Notifications" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="🎯" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Icons" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="🗺️" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Maps" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <Grid Padding="20,12" ColumnDefinitions="24,*" ColumnSpacing="12">
+                        <Label Text="📄" FontSize="16" VerticalOptions="Center" />
+                        <Label Text="Pages" Grid.Column="1" TextColor="#B0BEC5" FontSize="14" VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+    
+</ContentView>

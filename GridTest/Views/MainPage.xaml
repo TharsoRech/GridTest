@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:GridTest.Components"
+             xmlns:vm="clr-namespace:GridTest.ViewModels;assembly=GridTest.ViewModels"
+             x:Class="GridTest.Views.MainPage"
+             x:DataType="vm:MainPageViewModel">
+    
+    <Grid ColumnDefinitions="240,*" BackgroundColor="{StaticResource BackgroundGray}">
+        <!-- Sidebar -->
+        <components:SidebarView Grid.Column="0" />
+        
+        <!-- Main Content Area -->
+        <ScrollView Grid.Column="1">
+            <VerticalStackLayout Spacing="20" Padding="24">
+                <!-- Header -->
+                <components:HeaderView />
+                
+                <!-- Top Section: Earnings + Donut Chart -->
+                <Grid ColumnDefinitions="2*,*" ColumnSpacing="20" Margin="0,20,0,0">
+                    <!-- Earnings Panel -->
+                    <Border BackgroundColor="White"
+                            Padding="24"
+                            StrokeThickness="0"
+                            Grid.Column="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+                        </Border.Shadow>
+                        
+                        <Grid RowDefinitions="Auto,Auto,*,Auto">
+                            <Label Text="Total Earnings"
+                                   Style="{StaticResource CardTitleStyle}" />
+                            
+                            <HorizontalStackLayout Grid.Row="1" Spacing="16" Margin="0,12,0,0">
+                                <Label Text="{Binding Metrics.TotalEarningsFormatted, StringFormat='${0}'}"
+                                       FontSize="32"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Border BackgroundColor="{StaticResource AccentOrange}"
+                                        Padding="12,6"
+                                        StrokeThickness="0"
+                                        VerticalOptions="Center">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="6" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding Metrics.TotalSales, StringFormat='{0} Sales'}"
+                                           TextColor="White"
+                                           FontSize="14"
+                                           FontAttributes="Bold" />
+                                </Border>
+                            </HorizontalStackLayout>
+                            
+                            <!-- Line Chart -->
+                            <Grid Grid.Row="2" Margin="0,20,0,0" HeightRequest="180">
+                                <!-- Blue Line (Earnings) -->
+                                <Path Data="M 0,140 L 30,100 L 60,120 L 90,60 L 120,90 L 150,40 L 180,70 L 210,30 L 240,50 L 270,20 L 300,40 L 330,10"
+                                      Stroke="#4A90D9"
+                                      StrokeThickness="3"
+                                      Aspect="Fill"
+                                      VerticalOptions="Fill"
+                                      HorizontalOptions="Fill" />
+                                
+                                <!-- Yellow Line (Sales) -->
+                                <Path Data="M 0,160 L 30,130 L 60,110 L 90,120 L 120,80 L 150,100 L 180,60 L 210,90 L 240,50 L 270,70 L 300,30 L 330,40"
+                                      Stroke="#FFC107"
+                                      StrokeThickness="3"
+                                      Aspect="Fill"
+                                      VerticalOptions="Fill"
+                                      HorizontalOptions="Fill" />
+                            </Grid>
+                            
+                            <!-- Legend -->
+                            <HorizontalStackLayout Grid.Row="3" Spacing="20" Margin="0,12,0,0">
+                                <HorizontalStackLayout Spacing="6">
+                                    <BoxView WidthRequest="12" HeightRequest="12" Color="#4A90D9" CornerRadius="6" />
+                                    <Label Text="Earnings" FontSize="12" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="6">
+                                    <BoxView WidthRequest="12" HeightRequest="12" Color="#FFC107" CornerRadius="6" />
+                                    <Label Text="Sales" FontSize="12" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Donut Chart Panel -->
+                    <Border BackgroundColor="White"
+                            Padding="24"
+                            StrokeThickness="0"
+                            Grid.Column="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+                        </Border.Shadow>
+                        
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <Label Text="Traffic Distribution"
+                                   Style="{StaticResource CardTitleStyle}" />
+                            
+                            <!-- Donut Chart Simulation -->
+                            <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20">
+                                <!-- Outer Circle (Mobile 55%) -->
+                                <Path Data="M 60,0 A 60,60 0 1 1 -18.5,57.1"
+                                      Stroke="#FF5722"
+                                      StrokeThickness="20"
+                                      WidthRequest="120"
+                                      HeightRequest="120"
+                                      Aspect="Uniform" />
+                                
+                                <!-- Desktop 34% -->
+                                <Path Data="M 41.3,-43.7 A 60,60 0 0 1 57.1,18.5"
+                                      Stroke="#4A90D9"
+                                      StrokeThickness="20"
+                                      WidthRequest="120"
+                                      HeightRequest="120"
+                                      Aspect="Uniform" />
+                                
+                                <!-- Tablet 11% -->
+                                <Path Data="M 57.1,18.5 A 60,60 0 0 1 41.3,-43.7"
+                                      Stroke="#FFC107"
+                                      StrokeThickness="20"
+                                      WidthRequest="120"
+                                      HeightRequest="120"
+                                      Aspect="Uniform" />
+                                
+                                <!-- Center Circle (White) -->
+                                <Border WidthRequest="70"
+                                        HeightRequest="70"
+                                        BackgroundColor="White"
+                                        StrokeThickness="0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="35" />
+                                    </Border.StrokeShape>
+                                </Border>
+                            </Grid>
+                            
+                            <!-- Legend -->
+                            <VerticalStackLayout Grid.Row="2" Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <BoxView WidthRequest="12" HeightRequest="12" Color="#4A90D9" CornerRadius="6" />
+                                    <Label Text="Desktop 34%" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="8">
+                                    <BoxView WidthRequest="12" HeightRequest="12" Color="#FF5722" CornerRadius="6" />
+                                    <Label Text="Mobile 55%" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="8">
+                                    <BoxView WidthRequest="12" HeightRequest="12" Color="#FFC107" CornerRadius="6" />
+                                    <Label Text="Tablet 11%" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </Grid>
+                
+                <!-- Card Metrics Section -->
+                <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="16" Margin="0,20,0,0">
+                    <components:CardView Title="Revenue" Value="$12,450" AccentColor="#4A90D9" BackgroundColor="{StaticResource CardLightBlue}" Grid.Column="0" />
+                    <components:CardView Title="Orders" Value="245" AccentColor="#FFC107" BackgroundColor="{StaticResource CardLightYellow}" Grid.Column="1" />
+                    <components:CardView Title="Customers" Value="1,234" AccentColor="#FF5722" BackgroundColor="{StaticResource CardLightOrange}" Grid.Column="2" />
+                    <components:CardView Title="Growth" Value="+23%" AccentColor="#9C27B0" BackgroundColor="{StaticResource CardLightPurple}" Grid.Column="3" />
+                </Grid>
+                
+                <!-- Bottom Section: Activities + Orders -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="20" Margin="0,20,0,0">
+                    <!-- Recent Activities -->
+                    <Border BackgroundColor="White"
+                            Padding="24"
+                            StrokeThickness="0"
+                            Grid.Column="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+                        </Border.Shadow>
+                        
+                        <Grid RowDefinitions="Auto,*">
+                            <Label Text="Recent Activities"
+                                   Style="{StaticResource HeadlineLabel}"
+                                   FontSize="18" />
+                            
+                            <CollectionView Grid.Row="1"
+                                            ItemsSource="{Binding Metrics.RecentActivities}"
+                                            Margin="0,16,0,0">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <components:ListItemView />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Order Status Table -->
+                    <Border BackgroundColor="White"
+                            Padding="24"
+                            StrokeThickness="0"
+                            Grid.Column="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Border.Shadow>
+                            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+                        </Border.Shadow>
+                        
+                        <Grid RowDefinitions="Auto,*">
+                            <Label Text="Order Status"
+                                   Style="{StaticResource HeadlineLabel}"
+                                   FontSize="18" />
+                            
+                            <!-- Table -->
+                            <Grid Grid.Row="1" Margin="0,16,0,0"
+                                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                                  ColumnDefinitions="*,*,*,*,*">
+                                <!-- Header -->
+                                <Label Text="INVOICE" Grid.Row="0" Grid.Column="0" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                <Label Text="CUSTOMER" Grid.Row="0" Grid.Column="1" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                <Label Text="FROM" Grid.Row="0" Grid.Column="2" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                <Label Text="PRICE" Grid.Row="0" Grid.Column="3" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                <Label Text="STATUS" Grid.Row="0" Grid.Column="4" FontSize="12" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                
+                                <!-- Row 1 -->
+                                <Label Text="Invoice 12336" Grid.Row="1" Grid.Column="0" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Charty Duns" Grid.Row="1" Grid.Column="1" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Brazil" Grid.Row="1" Grid.Column="2" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="$2299" Grid.Row="1" Grid.Column="3" FontSize="13" Margin="0,12,0,0" />
+                                <Border Grid.Row="1" Grid.Column="4" BackgroundColor="#FF5722" Padding="8,4" HorizontalOptions="Start" Margin="0,12,0,0" StrokeThickness="0">
+                                    <Border.StrokeShape><RoundRectangle CornerRadius="4" /></Border.StrokeShape>
+                                    <Label Text="Pending" TextColor="White" FontSize="11" />
+                                </Border>
+                                
+                                <!-- Row 2 -->
+                                <Label Text="Invoice 12346" Grid.Row="2" Grid.Column="0" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Matko" Grid.Row="2" Grid.Column="1" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Italy" Grid.Row="2" Grid.Column="2" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="$23642" Grid.Row="2" Grid.Column="3" FontSize="13" Margin="0,12,0,0" />
+                                <Border Grid.Row="2" Grid.Column="4" BackgroundColor="#4CAF50" Padding="8,4" HorizontalOptions="Start" Margin="0,12,0,0" StrokeThickness="0">
+                                    <Border.StrokeShape><RoundRectangle CornerRadius="4" /></Border.StrokeShape>
+                                    <Label Text="Done" TextColor="White" FontSize="11" />
+                                </Border>
+                                
+                                <!-- Row 3 -->
+                                <Label Text="Invoice 12306" Grid.Row="3" Grid.Column="0" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Denyel" Grid.Row="3" Grid.Column="1" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="USA" Grid.Row="3" Grid.Column="2" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="$3181" Grid.Row="3" Grid.Column="3" FontSize="13" Margin="0,12,0,0" />
+                                <Border Grid.Row="3" Grid.Column="4" BackgroundColor="#2196F3" Padding="8,4" HorizontalOptions="Start" Margin="0,12,0,0" StrokeThickness="0">
+                                    <Border.StrokeShape><RoundRectangle CornerRadius="4" /></Border.StrokeShape>
+                                    <Label Text="Progress" TextColor="White" FontSize="11" />
+                                </Border>
+                                
+                                <!-- Row 4 -->
+                                <Label Text="Invoice 12586" Grid.Row="4" Grid.Column="0" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Belgio Bastana" Grid.Row="4" Grid.Column="1" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Kenya" Grid.Row="4" Grid.Column="2" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="$3369" Grid.Row="4" Grid.Column="3" FontSize="13" Margin="0,12,0,0" />
+                                <Border Grid.Row="4" Grid.Column="4" BackgroundColor="#F44336" Padding="8,4" HorizontalOptions="Start" Margin="0,12,0,0" StrokeThickness="0">
+                                    <Border.StrokeShape><RoundRectangle CornerRadius="4" /></Border.StrokeShape>
+                                    <Label Text="Open" TextColor="White" FontSize="11" />
+                                </Border>
+                                
+                                <!-- Row 5 -->
+                                <Label Text="Invoice 12311" Grid.Row="5" Grid.Column="0" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Sarli" Grid.Row="5" Grid.Column="1" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="Japan" Grid.Row="5" Grid.Column="2" FontSize="13" Margin="0,12,0,0" />
+                                <Label Text="$13240" Grid.Row="5" Grid.Column="3" FontSize="13" Margin="0,12,0,0" />
+                                <Border Grid.Row="5" Grid.Column="4" BackgroundColor="#4CAF50" Padding="8,4" HorizontalOptions="Start" Margin="0,12,0,0" StrokeThickness="0">
+                                    <Border.StrokeShape><RoundRectangle CornerRadius="4" /></Border.StrokeShape>
+                                    <Label Text="Done" TextColor="White" FontSize="11" />
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+    
+</ContentPage>

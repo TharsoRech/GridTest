@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.CardView"
+             x:Name="this">
+    
+    <Border BindingContext="{x:Reference this}"
+            BackgroundColor="{Binding BackgroundColor}"
+            Padding="20"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="8" />
+        </Border.StrokeShape>
+        <Border.Shadow>
+            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+        </Border.Shadow>
+        
+        <Grid RowDefinitions="Auto,Auto,*">
+            <!-- Title -->
+            <Label Text="{Binding Title}"
+                   Style="{StaticResource CardTitleStyle}" />
+            
+            <!-- Value -->
+            <Label Text="{Binding Value}"
+                   Style="{StaticResource CardValueStyle}"
+                   Grid.Row="1"
+                   Margin="0,8,0,0" />
+            
+            <!-- Mini Sparkline Chart -->
+            <Path Grid.Row="2"
+                  Data="M 0,20 C 10,15 20,25 30,18 C 40,10 50,22 60,15 C 70,8 80,20 90,12"
+                  Stroke="{Binding AccentColor}"
+                  StrokeThickness="2"
+                  Aspect="Fill"
+                  Margin="0,12,0,0"
+                  VerticalOptions="End"
+                  HorizontalOptions="Fill" />
+        </Grid>
+    </Border>
+    
+</ContentView>
