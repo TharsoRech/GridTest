@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.TrafficChartView">
+    
+    <Border BackgroundColor="White"
+            Padding="20"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="8" />
+        </Border.StrokeShape>
+        <Border.Shadow>
+            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+        </Border.Shadow>
+        
+        <Grid RowDefinitions="Auto,Auto,Auto">
+            
+            <Label Text="Traffic"
+                   Style="{StaticResource HeadlineLabel}"
+                   FontSize="16" />
+            
+            <!-- Donut Chart (rendered dynamically from TrafficData) -->
+            <Grid x:Name="ChartContainer" Grid.Row="1" HeightRequest="100" WidthRequest="100"
+                  HorizontalOptions="Center" Margin="0,12" />
+            
+            <!-- Legend (rendered dynamically from TrafficData) -->
+            <Grid x:Name="LegendContainer" Grid.Row="2" Margin="0,24,0,0" />
+        </Grid>
+    </Border>
+    
+</ContentView>

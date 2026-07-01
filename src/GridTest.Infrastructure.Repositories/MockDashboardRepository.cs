@@ -71,10 +71,10 @@ public class MockDashboardRepository : IDashboardRepository
 
             CardMetrics = new List<CardMetric>
             {
-                new() { Title = "Revenue Status", Value = "$4,567.53", Trend = " $432", AccentColor = "#4A90D9", BackgroundColor = "#E3F2FD" },
-                new() { Title = "Page View", Value = "$1,689.53", Trend = " $432", AccentColor = "#FFC107", BackgroundColor = "#FFFDE7" },
-                new() { Title = "Bounce Rate", Value = "$2,851.53", Trend = " $432", AccentColor = "#FF5722", BackgroundColor = "#FDF2E9" },
-                new() { Title = "Revenue Status", Value = "$52,567.53", Trend = " $432", AccentColor = "#9C27B0", BackgroundColor = "#F3E5F5" }
+                new() { Title = "Revenue Status", Trend = " $432", SubText = "Jan 01 - Jan 10", ChartType = "bar", AccentColor = "#4A90D9", BackgroundColor = "#E3F2FD", BarValues = new List<double> { 60, 35, 80, 45, 70 } },
+                new() { Title = "Page View", Trend = " $432", ChartType = "line", AccentColor = "#FFC107", BackgroundColor = "#FFFDE7", PathData = "M 0,30 L 20,10 L 40,25 L 60,5 L 80,20 L 100,8 L 120,15" },
+                new() { Title = "Bounce Rate", Trend = " $432", SubText = "Monthly", ChartType = "spline", AccentColor = "#FF5722", BackgroundColor = "#FDF2E9", PathData = "M 0,25 Q 15,10 30,20 T 60,15 T 90,10 T 120,18", PickerOptions = new List<string> { "Daily", "Weekly", "Monthly", "Yearly" }, SelectedOptionIndex = 2 },
+                new() { Title = "Revenue Status", Trend = " $432", SubText = "Jan 01 - Jan 10", ChartType = "bar", AccentColor = "#9C27B0", BackgroundColor = "#F3E5F5", BarValues = new List<double> { 50, 75, 30, 65, 85 } }
             },
 
             MiniCardMetrics = new List<MiniCardMetric>

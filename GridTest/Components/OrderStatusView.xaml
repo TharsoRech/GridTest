@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:entities="clr-namespace:GridTest.Domain.Entities;assembly=GridTest.Domain"
+             xmlns:converters="clr-namespace:GridTest.Converters"
+             x:Class="GridTest.Components.OrderStatusView">
+    
+    <ContentView.Resources>
+        <converters:StringToColorConverter x:Key="StringToColor" />
+    </ContentView.Resources>
+    
+    <Border BackgroundColor="White"
+            Padding="20"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="8" />
+        </Border.StrokeShape>
+        <Border.Shadow>
+            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+        </Border.Shadow>
+        
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+            
+            <!-- Title -->
+            <Label Text="Order Status"
+                   Style="{StaticResource HeadlineLabel}"
+                   FontSize="16" />
+            
+            <!-- PASSO 1: Toolbar - Action Buttons + Search -->
+            <Grid Grid.Row="1" ColumnDefinitions="Auto,*" Margin="0,12,0,8" ColumnSpacing="8">
+                <!-- Action Buttons (left) -->
+                <HorizontalStackLayout Spacing="8">
+                    <!-- + Add Button (Orange) -->
+                    <Border BackgroundColor="#FF5722" Padding="6,3" HeightRequest="26" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="+" FontSize="12" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Info/Filter Button -->
+                    <Border BackgroundColor="#F0F0F0" Padding="6,3" HeightRequest="26" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="ℹ" FontSize="12" TextColor="#7F8C8D" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Delete Button -->
+                    <Border BackgroundColor="#F0F0F0" Padding="6,3" HeightRequest="26" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="🗑" FontSize="10" TextColor="#7F8C8D" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Export Button -->
+                    <Border BackgroundColor="#F0F0F0" Padding="6,3" HeightRequest="26" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="💾" FontSize="10" TextColor="#7F8C8D" VerticalOptions="Center" />
+                    </Border>
+                </HorizontalStackLayout>
+                
+                <!-- Search (right) -->
+                <Grid Grid.Column="1" ColumnDefinitions="*,Auto" ColumnSpacing="4">
+                    <Border BackgroundColor="#F5F5F5" Padding="8,4" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Entry Placeholder="Search" FontSize="12" PlaceholderColor="#BDBDBD"
+                               BackgroundColor="Transparent" />
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="#F0F0F0" Padding="6,3" HeightRequest="26" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="⚙" FontSize="12" TextColor="#7F8C8D" VerticalOptions="Center" />
+                    </Border>
+                </Grid>
+            </Grid>
+            
+            <!-- PASSO 3: Table Header with background -->
+            <Border Grid.Row="2" BackgroundColor="#F8F9FA" Padding="12,8" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="0.9*,1.4*,0.8*,0.7*,1*">
+                    <Label Text="INVOICE" Grid.Column="0" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <Label Text="CUSTOMER" Grid.Column="1" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <Label Text="FROM" Grid.Column="2" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <Label Text="PRICE" Grid.Column="3" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <Label Text="STATUS" Grid.Column="4" FontSize="11" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+            
+            <!-- Table Rows (Dynamic) -->
+            <VerticalStackLayout Grid.Row="3"
+                                 BindableLayout.ItemsSource="{Binding Orders}"
+                                 Spacing="0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="entities:OrderItem">
+                        <Grid ColumnDefinitions="0.9*,1.4*,0.8*,0.7*,1*" Padding="12,10,12,10">
+                            <Label Text="{Binding Invoice}" Grid.Column="0" FontSize="12" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                            <Label Text="{Binding Customer}" Grid.Column="1" FontSize="12" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding From}" Grid.Column="2" FontSize="12" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                            <Label Text="{Binding Price}" Grid.Column="3" FontSize="12" TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                            <Border Grid.Column="4" 
+                                    BackgroundColor="{Binding StatusColor, Converter={StaticResource StringToColor}}" 
+                                    Padding="8,4" 
+                                    HorizontalOptions="Start" 
+                                    StrokeThickness="0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="6" />
+                                </Border.StrokeShape>
+                                <Label Text="{Binding Status}" TextColor="White" FontSize="10" FontAttributes="Bold" />
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            
+            <!-- Separator -->
+            <BoxView Grid.Row="4" HeightRequest="1" Color="#F0F0F0" Margin="0,8,0,8" />
+            
+            <!-- PASSO 4: Pagination Footer -->
+            <Grid Grid.Row="5" ColumnDefinitions="*,Auto" Margin="0,0,0,4">
+                <!-- Left: Showing text -->
+                <Label Text="Showing 1 to 20 of 20 entries"
+                       FontSize="11"
+                       TextColor="{StaticResource TextSecondary}"
+                       VerticalOptions="Center" />
+                
+                <!-- Right: Page selector -->
+                <HorizontalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                    <!-- Previous arrow -->
+                    <Border BackgroundColor="#F0F0F0" WidthRequest="28" HeightRequest="28" Padding="0" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="‹" FontSize="14" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Page 1 (active) -->
+                    <Border BackgroundColor="#E3F2FD" WidthRequest="28" HeightRequest="28" Padding="0" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="1" FontSize="12" FontAttributes="Bold" TextColor="#4A90D9" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Page 2 -->
+                    <Border BackgroundColor="#F0F0F0" WidthRequest="28" HeightRequest="28" Padding="0" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="2" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Page 3 -->
+                    <Border BackgroundColor="#F0F0F0" WidthRequest="28" HeightRequest="28" Padding="0" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="3" FontSize="12" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <!-- Next arrow -->
+                    <Border BackgroundColor="#F0F0F0" WidthRequest="28" HeightRequest="28" Padding="0" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+                        <Label Text="›" FontSize="14" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
+    </Border>
+    
+</ContentView>

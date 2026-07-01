@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.MiniCardView"
+             x:Name="this">
+    
+    <Border BindingContext="{x:Reference this}"
+            BackgroundColor="White"
+            Padding="14"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="8" />
+        </Border.StrokeShape>
+        <Border.Shadow>
+            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+        </Border.Shadow>
+        
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" RowDefinitions="Auto,Auto">
+            <!-- Icon Circle -->
+            <Border Grid.RowSpan="2"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    BackgroundColor="{Binding CircleColor}"
+                    StrokeThickness="0"
+                    VerticalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+                <Label Text="{Binding Icon}"
+                       FontSize="18"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Border>
+            
+            <!-- Label -->
+            <Label Grid.Column="1"
+                   Text="{Binding Label}"
+                   FontSize="11"
+                   TextColor="{StaticResource TextSecondary}"
+                   VerticalOptions="End" />
+            
+            <!-- Value -->
+            <Label Grid.Column="1"
+                   Grid.Row="1"
+                   Text="{Binding Value}"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}"
+                   VerticalOptions="Start"
+                   Margin="0,2,0,0" />
+        </Grid>
+    </Border>
+    
+</ContentView>

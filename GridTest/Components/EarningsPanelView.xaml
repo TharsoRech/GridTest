@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GridTest.Components.EarningsPanelView">
+    
+    <Border BackgroundColor="White"
+            Padding="20"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="8" />
+        </Border.StrokeShape>
+        <Border.Shadow>
+            <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
+        </Border.Shadow>
+        
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+            <Label Text="Total Earnings"
+                   Style="{StaticResource CardTitleStyle}" />
+            
+            <HorizontalStackLayout Grid.Row="1" Spacing="12" Margin="0,8,0,0">
+                <Label Text="{Binding TotalEarningsFormatted, StringFormat='${0}'}"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimary}" />
+                <Border BackgroundColor="{StaticResource AccentOrange}"
+                        Padding="10,4"
+                        StrokeThickness="0"
+                        VerticalOptions="Center">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="6" />
+                    </Border.StrokeShape>
+                    <Label Text="{Binding TotalSales, StringFormat='{0} Sales'}"
+                           TextColor="White"
+                           FontSize="12"
+                           FontAttributes="Bold" />
+                </Border>
+            </HorizontalStackLayout>
+            
+            <!-- Line Chart -->
+            <Grid Grid.Row="2" Margin="0,12,0,0" HeightRequest="150">
+                <Path Data="M 0,120 L 40,80 L 80,100 L 120,50 L 160,70 L 200,30 L 240,55 L 280,20 L 320,40 L 360,15 L 400,35 L 440,10"
+                      Stroke="#4A90D9"
+                      StrokeThickness="2.5"
+                      Aspect="Fill"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill" />
+                
+                <Path Data="M 0,140 L 40,110 L 80,90 L 120,100 L 160,65 L 200,80 L 240,50 L 280,70 L 320,40 L 360,55 L 400,25 L 440,35"
+                      Stroke="#FFC107"
+                      StrokeThickness="2.5"
+                      Aspect="Fill"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill" />
+            </Grid>
+            
+            <!-- Legend -->
+            <HorizontalStackLayout Grid.Row="3" Spacing="16" Margin="0,8,0,0">
+                <HorizontalStackLayout Spacing="6">
+                    <BoxView WidthRequest="10" HeightRequest="10" Color="#4A90D9" CornerRadius="5" />
+                    <Label Text="Earnings" FontSize="11" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="6">
+                    <BoxView WidthRequest="10" HeightRequest="10" Color="#FFC107" CornerRadius="5" />
+                    <Label Text="Sales" FontSize="11" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+        </Grid>
+    </Border>
+    
+</ContentView>

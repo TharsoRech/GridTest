@@ -32,8 +32,14 @@ public class CardMetric
     public string Title { get; set; } = string.Empty;
     public string Value { get; set; } = string.Empty;
     public string Trend { get; set; } = string.Empty;
+    public string SubText { get; set; } = string.Empty;
+    public string ChartType { get; set; } = "wave"; // bar, line, spline, wave
     public string AccentColor { get; set; } = string.Empty;
     public string BackgroundColor { get; set; } = string.Empty;
+    public List<double> BarValues { get; set; } = new();
+    public List<string> PickerOptions { get; set; } = new();
+    public int SelectedOptionIndex { get; set; }
+    public string PathData { get; set; } = string.Empty;
 }
 
 public class MiniCardMetric

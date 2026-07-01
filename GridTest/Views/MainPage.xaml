@@ -26,8 +26,12 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="entities:CardMetric">
                         <components:CardView Title="{Binding Title}" 
-                                             Value="{Binding Value}" 
                                              Trend="{Binding Trend}"
+                                             SubText="{Binding SubText}"
+                                             ChartType="{Binding ChartType}"
+                                             PathData="{Binding PathData}"
+                                             PickerOptions="{Binding PickerOptions}"
+                                             SelectedOptionIndex="{Binding SelectedOptionIndex}"
                                              AccentColor="{Binding AccentColor, Converter={StaticResource StringToColor}}" 
                                              BackgroundColor="{Binding BackgroundColor, Converter={StaticResource StringToColor}}"
                                              FlexLayout.Basis="48%"
