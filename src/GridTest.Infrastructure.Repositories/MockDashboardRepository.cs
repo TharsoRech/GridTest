@@ -79,10 +79,128 @@ public class MockDashboardRepository : IDashboardRepository
 
             MiniCardMetrics = new List<MiniCardMetric>
             {
-                new() { Icon = "💰", Label = "Wallet Balance", Value = "$4,567.53", Color = "#FF3B30" },
-                new() { Icon = "❤️", Label = "Referral Earning", Value = "$1,689.53", Color = "#4A90D9" },
-                new() { Icon = "📈", Label = "Estimate Sales", Value = "$2,851.53", Color = "#4CAF50" },
-                new() { Icon = "🥧", Label = "Earning", Value = "$52,567.53", Color = "#E91E63" }
+                new() { Icon = "💰", Label = "Wallet Balance", Value = "$4,567.53", Color = "#FF3B30", BackgroundColor = "#FFEBEE" },
+                new() { Icon = "❤️", Label = "Referral Earning", Value = "$1,689.53", Color = "#4A90D9", BackgroundColor = "#E3F2FD" },
+                new() { Icon = "📈", Label = "Estimate Sales", Value = "$2,851.53", Color = "#4CAF50", BackgroundColor = "#E8F5E9" },
+                new() { Icon = "🥧", Label = "Earning", Value = "$52,567.53", Color = "#E91E63", BackgroundColor = "#FCE4EC" }
+            },
+
+            PeriodMetrics = new Dictionary<string, PeriodMetrics>
+            {
+                ["DAILY"] = new PeriodMetrics
+                {
+                    PeriodName = "DAILY",
+                    TotalEarnings = 1245.50m,
+                    TotalSales = 28,
+                    EarningsLabel = "Today's Earnings",
+                    SalesLabel = "Today's Sales",
+                    ButtonText = "Yesterday Summary",
+                    XAxisLabels = new List<string> { "6am", "9am", "12pm", "3pm", "6pm", "9pm" },
+                    YAxisValues = new List<double> { 0, 50, 100, 150, 200 },
+                    EarningsChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "6am", Value = 20 },
+                        new() { Label = "9am", Value = 85 },
+                        new() { Label = "12pm", Value = 150 },
+                        new() { Label = "3pm", Value = 120 },
+                        new() { Label = "6pm", Value = 180 },
+                        new() { Label = "9pm", Value = 95 }
+                    },
+                    SalesChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "6am", Value = 10 },
+                        new() { Label = "9am", Value = 45 },
+                        new() { Label = "12pm", Value = 80 },
+                        new() { Label = "3pm", Value = 65 },
+                        new() { Label = "6pm", Value = 100 },
+                        new() { Label = "9pm", Value = 55 }
+                    }
+                },
+                ["WEEKLY"] = new PeriodMetrics
+                {
+                    PeriodName = "WEEKLY",
+                    TotalEarnings = 8734.25m,
+                    TotalSales = 156,
+                    EarningsLabel = "This Week Earnings",
+                    SalesLabel = "This Week Sales",
+                    ButtonText = "Last Week Summary",
+                    XAxisLabels = new List<string> { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" },
+                    YAxisValues = new List<double> { 0, 500, 1000, 1500, 2000 },
+                    EarningsChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "Mon", Value = 1200 },
+                        new() { Label = "Tue", Value = 1800 },
+                        new() { Label = "Wed", Value = 1500 },
+                        new() { Label = "Thu", Value = 1900 },
+                        new() { Label = "Fri", Value = 1700 },
+                        new() { Label = "Sat", Value = 800 },
+                        new() { Label = "Sun", Value = 600 }
+                    },
+                    SalesChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "Mon", Value = 800 },
+                        new() { Label = "Tue", Value = 1200 },
+                        new() { Label = "Wed", Value = 1000 },
+                        new() { Label = "Thu", Value = 1400 },
+                        new() { Label = "Fri", Value = 1100 },
+                        new() { Label = "Sat", Value = 500 },
+                        new() { Label = "Sun", Value = 400 }
+                    }
+                },
+                ["MONTHLY"] = new PeriodMetrics
+                {
+                    PeriodName = "MONTHLY",
+                    TotalEarnings = 34568.96m,
+                    TotalSales = 682,
+                    EarningsLabel = "This Month Earnings",
+                    SalesLabel = "This Month Sales",
+                    ButtonText = "Last Month Summary",
+                    XAxisLabels = new List<string> { "Week 1", "Week 2", "Week 3", "Week 4" },
+                    YAxisValues = new List<double> { 0, 2000, 4000, 6000, 8000, 10000 },
+                    EarningsChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "Week 1", Value = 7500 },
+                        new() { Label = "Week 2", Value = 9200 },
+                        new() { Label = "Week 3", Value = 8800 },
+                        new() { Label = "Week 4", Value = 9068 }
+                    },
+                    SalesChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "Week 1", Value = 150 },
+                        new() { Label = "Week 2", Value = 180 },
+                        new() { Label = "Week 3", Value = 175 },
+                        new() { Label = "Week 4", Value = 177 }
+                    }
+                },
+                ["YEARLY"] = new PeriodMetrics
+                {
+                    PeriodName = "YEARLY",
+                    TotalEarnings = 425680.50m,
+                    TotalSales = 8542,
+                    EarningsLabel = "This Year Earnings",
+                    SalesLabel = "This Year Sales",
+                    ButtonText = "Last Year Summary",
+                    XAxisLabels = new List<string> { "Jan", "Mar", "May", "Jul", "Sep", "Nov" },
+                    YAxisValues = new List<double> { 0, 10000, 20000, 30000, 40000, 50000 },
+                    EarningsChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "Jan", Value = 28000 },
+                        new() { Label = "Mar", Value = 35000 },
+                        new() { Label = "May", Value = 42000 },
+                        new() { Label = "Jul", Value = 38000 },
+                        new() { Label = "Sep", Value = 45000 },
+                        new() { Label = "Nov", Value = 48000 }
+                    },
+                    SalesChartData = new List<ChartDataPoint>
+                    {
+                        new() { Label = "Jan", Value = 550 },
+                        new() { Label = "Mar", Value = 720 },
+                        new() { Label = "May", Value = 880 },
+                        new() { Label = "Jul", Value = 790 },
+                        new() { Label = "Sep", Value = 950 },
+                        new() { Label = "Nov", Value = 1020 }
+                    }
+                }
             }
         };
 

@@ -4,7 +4,7 @@
              x:Class="GridTest.Components.EarningsPanelView">
     
     <Border BackgroundColor="White"
-            Padding="20"
+            Padding="16"
             StrokeThickness="0">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="8" />
@@ -13,58 +13,180 @@
             <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
         </Border.Shadow>
         
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
-            <Label Text="Total Earnings"
-                   Style="{StaticResource CardTitleStyle}" />
+        <VerticalStackLayout Spacing="16">
             
-            <HorizontalStackLayout Grid.Row="1" Spacing="12" Margin="0,8,0,0">
-                <Label Text="{Binding TotalEarningsFormatted, StringFormat='${0}'}"
-                       FontSize="28"
+            <!-- Row 1: Title + Tabs -->
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="8">
+                <!-- Title -->
+                <Label Text="Dashboard"
+                       FontSize="18"
                        FontAttributes="Bold"
                        TextColor="{StaticResource TextPrimary}" />
-                <Border BackgroundColor="{StaticResource AccentOrange}"
-                        Padding="10,4"
-                        StrokeThickness="0"
-                        VerticalOptions="Center">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="6" />
-                    </Border.StrokeShape>
-                    <Label Text="{Binding TotalSales, StringFormat='{0} Sales'}"
-                           TextColor="White"
-                           FontSize="12"
-                           FontAttributes="Bold" />
-                </Border>
-            </HorizontalStackLayout>
-            
-            <!-- Line Chart -->
-            <Grid Grid.Row="2" Margin="0,12,0,0" HeightRequest="150">
-                <Path Data="M 0,120 L 40,80 L 80,100 L 120,50 L 160,70 L 200,30 L 240,55 L 280,20 L 320,40 L 360,15 L 400,35 L 440,10"
-                      Stroke="#4A90D9"
-                      StrokeThickness="2.5"
-                      Aspect="Fill"
-                      VerticalOptions="Fill"
-                      HorizontalOptions="Fill" />
+                <Label x:Name="SubtitleLabel"
+                       Text="Overview of Latest Month"
+                       FontSize="12"
+                       TextColor="{StaticResource TextSecondary}"
+                       Grid.Row="1" />
                 
-                <Path Data="M 0,140 L 40,110 L 80,90 L 120,100 L 160,65 L 200,80 L 240,50 L 280,70 L 320,40 L 360,55 L 400,25 L 440,35"
-                      Stroke="#FFC107"
-                      StrokeThickness="2.5"
-                      Aspect="Fill"
-                      VerticalOptions="Fill"
-                      HorizontalOptions="Fill" />
+                <!-- Tabs (clicáveis) -->
+                <HorizontalStackLayout Grid.Column="1" Spacing="10" VerticalOptions="Center">
+                    <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTabTapped" CommandParameter="DAILY" />
+                        </VerticalStackLayout.GestureRecognizers>
+                        <Label x:Name="DailyTabLabel" Text="DAILY" FontSize="10" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                        <BoxView x:Name="DailyTabIndicator" HeightRequest="2" WidthRequest="32" CornerRadius="1" Color="{StaticResource AccentOrange}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTabTapped" CommandParameter="WEEKLY" />
+                        </VerticalStackLayout.GestureRecognizers>
+                        <Label x:Name="WeeklyTabLabel" Text="WEEKLY" FontSize="10" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        <BoxView x:Name="WeeklyTabIndicator" HeightRequest="2" WidthRequest="32" CornerRadius="1" Color="Transparent" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTabTapped" CommandParameter="MONTHLY" />
+                        </VerticalStackLayout.GestureRecognizers>
+                        <Label x:Name="MonthlyTabLabel" Text="MONTHLY" FontSize="10" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        <BoxView x:Name="MonthlyTabIndicator" HeightRequest="2" WidthRequest="32" CornerRadius="1" Color="Transparent" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTabTapped" CommandParameter="YEARLY" />
+                        </VerticalStackLayout.GestureRecognizers>
+                        <Label x:Name="YearlyTabLabel" Text="YEARLY" FontSize="10" TextColor="{StaticResource TextSecondary}" HorizontalOptions="Center" />
+                        <BoxView x:Name="YearlyTabIndicator" HeightRequest="2" WidthRequest="32" CornerRadius="1" Color="Transparent" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                
+                <!-- Color Legend -->
+                <HorizontalStackLayout Grid.Column="1" Grid.Row="1" Spacing="8" VerticalOptions="Center">
+                    <HorizontalStackLayout Spacing="4">
+                        <BoxView WidthRequest="6" HeightRequest="6" CornerRadius="3" Color="#4A90D9" VerticalOptions="Center" />
+                        <Label Text="Online" FontSize="9" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="4">
+                        <BoxView WidthRequest="6" HeightRequest="6" CornerRadius="3" Color="#FFC107" VerticalOptions="Center" />
+                        <Label Text="Store" FontSize="9" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
             </Grid>
             
-            <!-- Legend -->
-            <HorizontalStackLayout Grid.Row="3" Spacing="16" Margin="0,8,0,0">
+            <!-- Divider -->
+            <BoxView HeightRequest="1" Color="#F0F0F0" />
+            
+            <!-- Row 2: Metrics (dinâmico do repository) -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout Spacing="2">
+                    <Label x:Name="TotalEarningsLabel"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimary}" />
+                    <Label x:Name="EarningsDescriptionLabel"
+                           FontSize="10"
+                           TextColor="{StaticResource TextSecondary}" />
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout Spacing="2" Grid.Column="1">
+                    <Label x:Name="TotalSalesLabel"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimary}" />
+                    <Label x:Name="SalesDescriptionLabel"
+                           FontSize="10"
+                           TextColor="{StaticResource TextSecondary}" />
+                </VerticalStackLayout>
+            </Grid>
+            
+            <!-- Row 3: Chart com Y-axis alinhado -->
+            <Grid HeightRequest="180" ColumnDefinitions="30,*" RowDefinitions="*,16">
+                <!-- Y-Axis Labels (alinhados com gridlines via Grid rows) -->
+                <Grid Grid.Column="0" Grid.Row="0" RowDefinitions="Auto,*,*,Auto">
+                    <Label x:Name="YLabel3" Text="" FontSize="8" TextColor="{StaticResource TextSecondary}" HorizontalOptions="End" VerticalOptions="Start" Margin="0,0,4,0" />
+                    <Label x:Name="YLabel2" Text="" FontSize="8" TextColor="{StaticResource TextSecondary}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,4,0" Grid.Row="1" />
+                    <Label x:Name="YLabel1" Text="" FontSize="8" TextColor="{StaticResource TextSecondary}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,4,0" Grid.Row="2" />
+                    <Label x:Name="YLabel0" Text="" FontSize="8" TextColor="{StaticResource TextSecondary}" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,4,0" Grid.Row="3" />
+                </Grid>
+                
+                <!-- Chart Area -->
+                <Grid Grid.Column="1" Grid.Row="0">
+                    <!-- Gridlines -->
+                    <BoxView HeightRequest="1" Color="#F0F0F0" VerticalOptions="Start" />
+                    <BoxView HeightRequest="1" Color="#F0F0F0" VerticalOptions="Center" />
+                    <BoxView HeightRequest="1" Color="#F0F0F0" VerticalOptions="End" />
+                    
+                    <!-- Area fills (rendered dynamically) -->
+                    <Path x:Name="EarningsAreaPath"
+                          Fill="#4A90D9"
+                          Opacity="0.12"
+                          Aspect="Fill"
+                          VerticalOptions="Fill"
+                          HorizontalOptions="Fill" />
+                    
+                    <Path x:Name="SalesAreaPath"
+                          Fill="#FFC107"
+                          Opacity="0.12"
+                          Aspect="Fill"
+                          VerticalOptions="Fill"
+                          HorizontalOptions="Fill" />
+                    
+                    <!-- Spline lines (rendered dynamically) -->
+                    <Path x:Name="EarningsLinePath"
+                          Stroke="#4A90D9"
+                          StrokeThickness="2"
+                          Aspect="Fill"
+                          VerticalOptions="Fill"
+                          HorizontalOptions="Fill" />
+                    
+                    <Path x:Name="SalesLinePath"
+                          Stroke="#FFC107"
+                          StrokeThickness="2"
+                          Aspect="Fill"
+                          VerticalOptions="Fill"
+                          HorizontalOptions="Fill" />
+                </Grid>
+                
+                <!-- X-Axis Labels (dinâmico do repository) -->
+                <Grid x:Name="XAxisContainer" Grid.Column="1" Grid.Row="1" HeightRequest="16" />
+            </Grid>
+            
+            <!-- Row 4: Chart Legend -->
+            <HorizontalStackLayout Spacing="16" HorizontalOptions="Center">
                 <HorizontalStackLayout Spacing="6">
-                    <BoxView WidthRequest="10" HeightRequest="10" Color="#4A90D9" CornerRadius="5" />
-                    <Label Text="Earnings" FontSize="11" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <BoxView WidthRequest="8" HeightRequest="8" Color="#4A90D9" CornerRadius="4" />
+                    <Label Text="Earnings" FontSize="10" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Spacing="6">
-                    <BoxView WidthRequest="10" HeightRequest="10" Color="#FFC107" CornerRadius="5" />
-                    <Label Text="Sales" FontSize="11" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <BoxView WidthRequest="8" HeightRequest="8" Color="#FFC107" CornerRadius="4" />
+                    <Label Text="Sales" FontSize="10" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
                 </HorizontalStackLayout>
             </HorizontalStackLayout>
-        </Grid>
+            
+            <!-- Row 5: Button (dinâmico do repository) -->
+            <Button x:Name="SummaryButton"
+                    BackgroundColor="{StaticResource AccentOrange}"
+                    TextColor="White"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    CornerRadius="8"
+                    HeightRequest="40" />
+            
+            <!-- Divider -->
+            <BoxView HeightRequest="1" Color="#F0F0F0" />
+            
+            <!-- Row 6: Footer Mini-Cards (dinâmico do repository) -->
+            <Grid x:Name="MiniCardsContainer" ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+            </Grid>
+        </VerticalStackLayout>
     </Border>
     
 </ContentView>

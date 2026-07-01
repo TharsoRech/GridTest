@@ -20,7 +20,7 @@
                    FontSize="16" />
             
             <!-- Donut Chart (rendered dynamically from TrafficData) -->
-            <Grid x:Name="ChartContainer" Grid.Row="1" HeightRequest="100" WidthRequest="100"
+            <Grid x:Name="ChartContainer" Grid.Row="1" HeightRequest="120" WidthRequest="120"
                   HorizontalOptions="Center" Margin="0,12" />
             
             <!-- Legend (rendered dynamically from TrafficData) -->

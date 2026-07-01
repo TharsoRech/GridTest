@@ -12,6 +12,22 @@ public class DashboardMetrics
     public List<OrderItem> Orders { get; set; } = new();
     public List<CardMetric> CardMetrics { get; set; } = new();
     public List<MiniCardMetric> MiniCardMetrics { get; set; } = new();
+    public Dictionary<string, PeriodMetrics> PeriodMetrics { get; set; } = new();
+}
+
+public class PeriodMetrics
+{
+    public string PeriodName { get; set; } = string.Empty;
+    public decimal TotalEarnings { get; set; }
+    public string TotalEarningsFormatted => TotalEarnings.ToString("F2");
+    public int TotalSales { get; set; }
+    public string EarningsLabel { get; set; } = string.Empty;
+    public string SalesLabel { get; set; } = string.Empty;
+    public string ButtonText { get; set; } = string.Empty;
+    public List<ChartDataPoint> EarningsChartData { get; set; } = new();
+    public List<ChartDataPoint> SalesChartData { get; set; } = new();
+    public List<string> XAxisLabels { get; set; } = new();
+    public List<double> YAxisValues { get; set; } = new();
 }
 
 public class ChartDataPoint
@@ -48,4 +64,5 @@ public class MiniCardMetric
     public string Label { get; set; } = string.Empty;
     public string Value { get; set; } = string.Empty;
     public string Color { get; set; } = string.Empty;
+    public string BackgroundColor { get; set; } = string.Empty;
 }
