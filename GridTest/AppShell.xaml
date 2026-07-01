@@ -3,12 +3,90 @@
     x:Class="GridTest.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:GridTest.Views"
-    Title="GridTest">
+    xmlns:views="clr-namespace:GridTest.Views"
+    Title="GridTest"
+    Shell.NavBarIsVisible="False"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="#111E35">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Custom Flyout Item Template -->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="40,*" ColumnSpacing="12" Padding="20,12" HeightRequest="44">
+                <Label Text="{Binding FlyoutIcon}"
+                       FontSize="18"
+                       TextColor="#B0BEC5"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Title}"
+                       Grid.Column="1"
+                       FontSize="14"
+                       TextColor="White"
+                       VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!-- Flyout Header -->
+    <Shell.FlyoutHeader>
+        <Label Text="GridTest"
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="White"
+               Margin="20,30,0,20" />
+    </Shell.FlyoutHeader>
+
+    <!-- Flyout Menu Items -->
+    <FlyoutItem Title="Dashboard" FlyoutIcon="📊">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Widgets" FlyoutIcon="🧩">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="WidgetsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="UI Elements" FlyoutIcon="🎨">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="UIElementsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Advanced UI" FlyoutIcon="⚡">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="AdvancedUIPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Form Elements" FlyoutIcon="📝">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="FormElementsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Editors" FlyoutIcon="✏️">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="EditorsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Charts" FlyoutIcon="📈">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="ChartsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Tables" FlyoutIcon="📋">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="TablesPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Popups" FlyoutIcon="💬">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="PopupsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Notifications" FlyoutIcon="🔔">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="NotificationsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Icons" FlyoutIcon="🎯">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="IconsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Maps" FlyoutIcon="🗺️">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="MapsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Pages" FlyoutIcon="📄">
+        <ShellContent ContentTemplate="{DataTemplate views:MainPage}" Route="PagesPage" />
+    </FlyoutItem>
 
 </Shell>

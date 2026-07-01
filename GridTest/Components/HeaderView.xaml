@@ -3,14 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GridTest.Components.HeaderView">
     
-    <Grid ColumnDefinitions="*,Auto" Padding="24,16" BackgroundColor="{StaticResource BackgroundGray}">
+    <Grid ColumnDefinitions="Auto,*,Auto" Padding="24,16" BackgroundColor="{StaticResource BackgroundGray}">
+        <!-- Hamburger Menu Button -->
+        <Border BackgroundColor="White"
+                Padding="10,8"
+                StrokeThickness="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8" />
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="#1A000000" Offset="0,2" Radius="4" Opacity="0.1" />
+            </Border.Shadow>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnMenuTapped" />
+            </Border.GestureRecognizers>
+            <Label Text="☰" FontSize="20" />
+        </Border>
+        
         <!-- Page Title -->
         <Label Text="Dashboard"
+               Grid.Column="1"
                Style="{StaticResource HeadlineLabel}"
-               VerticalOptions="Center" />
+               VerticalOptions="Center"
+               Margin="16,0,0,0" />
         
         <!-- Right Side Actions -->
-        <HorizontalStackLayout Grid.Column="1" Spacing="16" VerticalOptions="Center">
+        <HorizontalStackLayout Grid.Column="2" Spacing="16" VerticalOptions="Center">
             <Border BackgroundColor="White"
                     Padding="12,8"
                     StrokeThickness="0">

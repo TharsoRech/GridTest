@@ -6,8 +6,9 @@
     
     <Border BindingContext="{x:Reference this}"
             BackgroundColor="{Binding BackgroundColor}"
-            Padding="20"
-            StrokeThickness="0">
+            Padding="16"
+            StrokeThickness="0"
+            MinimumHeightRequest="140">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="8" />
         </Border.StrokeShape>
@@ -15,26 +16,42 @@
             <Shadow Brush="#1A000000" Offset="0,2" Radius="8" Opacity="0.15" />
         </Border.Shadow>
         
-        <Grid RowDefinitions="Auto,Auto,*">
+        <Grid RowDefinitions="Auto,Auto,Auto,*">
             <!-- Title -->
             <Label Text="{Binding Title}"
-                   Style="{StaticResource CardTitleStyle}" />
+                   Style="{StaticResource CardTitleStyle}"
+                   FontSize="12" />
             
             <!-- Value -->
             <Label Text="{Binding Value}"
                    Style="{StaticResource CardValueStyle}"
                    Grid.Row="1"
-                   Margin="0,8,0,0" />
+                   FontSize="22"
+                   Margin="0,6,0,0" />
             
-            <!-- Mini Sparkline Chart -->
-            <Path Grid.Row="2"
-                  Data="M 0,20 C 10,15 20,25 30,18 C 40,10 50,22 60,15 C 70,8 80,20 90,12"
+            <!-- Trend Indicator -->
+            <HorizontalStackLayout Grid.Row="2" Spacing="4" Margin="0,4,0,0">
+                <Label Text="▲"
+                       FontSize="10"
+                       TextColor="{Binding AccentColor}"
+                       VerticalOptions="Center" />
+                <Label Text="{Binding Trend}"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="{Binding AccentColor}"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            
+            <!-- Mini Sparkline Wave Chart -->
+            <Path Grid.Row="3"
+                  Data="M 0,25 Q 15,10 30,20 T 60,15 T 90,10 T 120,18"
                   Stroke="{Binding AccentColor}"
                   StrokeThickness="2"
                   Aspect="Fill"
-                  Margin="0,12,0,0"
+                  Margin="0,8,0,0"
                   VerticalOptions="End"
-                  HorizontalOptions="Fill" />
+                  HorizontalOptions="Fill"
+                  Opacity="0.6" />
         </Grid>
     </Border>
     

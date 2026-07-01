@@ -8,6 +8,9 @@ public partial class CardView
     public static readonly BindableProperty ValueProperty =
         BindableProperty.Create(nameof(Value), typeof(string), typeof(CardView), string.Empty);
 
+    public static readonly BindableProperty TrendProperty =
+        BindableProperty.Create(nameof(Trend), typeof(string), typeof(CardView), string.Empty);
+
     public static readonly BindableProperty AccentColorProperty =
         BindableProperty.Create(nameof(AccentColor), typeof(Color), typeof(CardView), Colors.Blue);
 
@@ -24,6 +27,12 @@ public partial class CardView
     {
         get => (string)GetValue(ValueProperty);
         set => SetValue(ValueProperty, value);
+    }
+
+    public string Trend
+    {
+        get => (string)GetValue(TrendProperty);
+        set => SetValue(TrendProperty, value);
     }
 
     public Color AccentColor

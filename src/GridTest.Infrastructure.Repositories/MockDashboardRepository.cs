@@ -62,19 +62,27 @@ public class MockDashboardRepository : IDashboardRepository
 
             Orders = new List<OrderItem>
             {
-                new() { Invoice = "Invoice 12336", Customer = "Charty Duns", From = "Brazil", Price = "$2299", Status = "Pending", StatusColor = "#FF5722" },
-                new() { Invoice = "Invoice 12346", Customer = "Matko", From = "Italy", Price = "$23642", Status = "Done", StatusColor = "#4CAF50" },
-                new() { Invoice = "Invoice 12306", Customer = "Denyel", From = "USA", Price = "$3181", Status = "Progress", StatusColor = "#2196F3" },
-                new() { Invoice = "Invoice 12586", Customer = "Belgio Bastana", From = "Kenya", Price = "$3369", Status = "Open", StatusColor = "#F44336" },
-                new() { Invoice = "Invoice 12311", Customer = "Sarli", From = "Japan", Price = "$13240", Status = "Done", StatusColor = "#4CAF50" }
+                new() { Invoice = "12386", Customer = "Charly Dues", From = "Brazil", Price = "$299", Status = "Process", StatusColor = "#F44336" },
+                new() { Invoice = "12386", Customer = "Marko", From = "Italy", Price = "$2642", Status = "Open", StatusColor = "#4CAF50" },
+                new() { Invoice = "12386", Customer = "Deniyel Onak", From = "Russia", Price = "$981", Status = "On Hold", StatusColor = "#2196F3" },
+                new() { Invoice = "12386", Customer = "Belgiri Bastana", From = "Korea", Price = "$369", Status = "Process", StatusColor = "#F44336" },
+                new() { Invoice = "12386", Customer = "Sarti Onuska", From = "Japan", Price = "$1240", Status = "Open", StatusColor = "#4CAF50" }
             },
 
             CardMetrics = new List<CardMetric>
             {
-                new() { Title = "Revenue", Value = "$12,450", AccentColor = "#4A90D9", BackgroundColor = "#E3F2FD" },
-                new() { Title = "Orders", Value = "245", AccentColor = "#FFC107", BackgroundColor = "#FFFDE7" },
-                new() { Title = "Customers", Value = "1,234", AccentColor = "#FF5722", BackgroundColor = "#FDF2E9" },
-                new() { Title = "Growth", Value = "+23%", AccentColor = "#9C27B0", BackgroundColor = "#F3E5F5" }
+                new() { Title = "Revenue Status", Value = "$4,567.53", Trend = " $432", AccentColor = "#4A90D9", BackgroundColor = "#E3F2FD" },
+                new() { Title = "Page View", Value = "$1,689.53", Trend = " $432", AccentColor = "#FFC107", BackgroundColor = "#FFFDE7" },
+                new() { Title = "Bounce Rate", Value = "$2,851.53", Trend = " $432", AccentColor = "#FF5722", BackgroundColor = "#FDF2E9" },
+                new() { Title = "Revenue Status", Value = "$52,567.53", Trend = " $432", AccentColor = "#9C27B0", BackgroundColor = "#F3E5F5" }
+            },
+
+            MiniCardMetrics = new List<MiniCardMetric>
+            {
+                new() { Icon = "💰", Label = "Wallet Balance", Value = "$4,567.53", Color = "#FF3B30" },
+                new() { Icon = "❤️", Label = "Referral Earning", Value = "$1,689.53", Color = "#4A90D9" },
+                new() { Icon = "📈", Label = "Estimate Sales", Value = "$2,851.53", Color = "#4CAF50" },
+                new() { Icon = "🥧", Label = "Earning", Value = "$52,567.53", Color = "#E91E63" }
             }
         };
 

@@ -7,5 +7,5 @@ public class OrderItem
     public string From { get; set; } = string.Empty;
     public string Price { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;
-    public string StatusColor { get; set; } = string.Empty;
+    public string StatusColor { get; set; } = "#9E9E9E";
 }
